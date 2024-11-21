@@ -1,4 +1,4 @@
-import {demoData} from "../demoData.ts";
+import {demoData} from "./demoData.ts";
 
 /**
  * This is a fake async function that simulates loading a user from an API

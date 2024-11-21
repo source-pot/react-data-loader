@@ -1,4 +1,4 @@
-import {loadUser} from "../lib/todos/loadUser.ts";
+import {loadUser} from "../lib/loadUser.ts";
 import {DataLoader} from "./DataLoader.tsx";
 
 /**
