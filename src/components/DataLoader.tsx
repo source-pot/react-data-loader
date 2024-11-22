@@ -1,5 +1,4 @@
-import {useQuery} from "@tanstack/react-query";
-import {ReactNode} from "react";
+import {ReactNode, useEffect, useState} from "react";
 
 interface Props<T> {
   loaderFunction(): Promise<T>
@@ -13,13 +12,13 @@ interface Props<T> {
  * Also supports an optional loading state via the fallback prop.
  */
 export function DataLoader<T>({ loaderFunction, render, fallback }: Props<T>) {
-  const { data, isPending } = useQuery<T>({
-      queryKey: ['todos'],
-      queryFn: loaderFunction
-    }
-  )
+  const [ data, setData ] = useState<T | undefined>(undefined)
 
-  if (isPending || data === undefined) {
+  useEffect(() => {
+    loaderFunction().then(setData)
+  }, [loaderFunction])
+
+  if (data === undefined) {
     return fallback ?? null
   }
 
